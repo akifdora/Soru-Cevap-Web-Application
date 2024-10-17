@@ -10,7 +10,7 @@
     <div class="container mt-4">
         <h2>Giriş Yap</h2>
 
-        <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+        <% if (success_msg && success_msg.length > 0) { %>
             <div class="alert alert-success" role="alert">
                 <%= success_msg %>
             </div>
