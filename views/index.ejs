@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru-Cevap Sitesi</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container mt-4">
+        <% if (searchQuery) { %> 
+            <h2>Yapılan arama: <%= searchQuery %></h2>
+        <% } %>
+
+        <div class="row">
+            <% if (questions.length > 0) { %> 
+                <% questions.forEach(question => { %>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= question.title %></h5>
+                                <p class="card-text">
+                                    <%= question.content.length > 100 ? question.content.substring(0, 100) + '...' : question.content %>
+                                </p>
+                                <hr>
+                                <p class="card-text"><small><i class="fas fa-user"></i> <%= question.user.username %><br><i class="fas fa-calendar-alt"></i> <%= question.createdAt.toLocaleString() %><br><i class="fas fa-comment"></i> <%= question.comments.length %></small></p>
+                                <a href="/question/<%= question._id %>" class="btn btn-primary"><i class="fas fa-info-circle"></i> Devamını oku</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %> 
+                <% if (message) { %> 
+                    <div class="alert alert-warning" role="alert">
+                        <%= message %>
+                    </div>
+                <% } %> 
+            <% } %>
+        </div>
+    </div>
+
+</body>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/script.js"></script>
+
+</html>

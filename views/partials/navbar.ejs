@@ -1,0 +1,22 @@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><i class="fas fa-question"></i> Soru-Cevap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <form class="d-flex me-3" action="/" method="GET">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Soru ara..." aria-label="Arama">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i> Ara</button>
+                </form>
+                <% if (user) { %>
+                <button class="btn btn-outline-primary me-2" type="button" onclick="window.location.href='/ask'"><i class="fas fa-paper-plane"></i> Soru Sor</button>
+                <button class="btn btn-primary me-2" type="button" onclick="window.location.href='/logout'"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</button>
+                <% } else { %>
+                <button class="btn btn-outline-primary me-2" type="button" onclick="window.location.href='/login'">Giriş</button>
+                <button class="btn btn-primary me-2" type="button" onclick="window.location.href='/register'">Kayıt Ol</button>
+                <% } %>
+                <button id="toggleButton" type="button" class="btn btn-secondary">🌙</button>
+            </div>
+        </div>
+    </nav>

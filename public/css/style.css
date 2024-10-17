@@ -1,0 +1,65 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+body.dark-mode .navbar {
+    background-color: #212529;
+}
+
+body.dark-mode .navbar a {
+    color: #f8f9fa;
+}
+
+body.dark-mode .navbar .btn {
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+}
+
+body.dark-mode .navbar .btn-outline-primary {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.dark-mode .navbar .btn-outline-success {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.dark-mode .card ,
+body.dark-mode .list-group-item {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+body.dark-mode .card-title,
+body.dark-mode .card-text,
+body.dark-mode .list-group-item {
+    color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .navbar .d-flex {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .navbar .d-flex > form {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .navbar .btn {
+        margin-top: 10px;
+    }
+
+    .navbar .btn:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}

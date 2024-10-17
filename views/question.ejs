@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title><%= question.title %></title>
+</head>
+<body class="<%= isDarkMode ? 'dark-mode' : '' %>">
+
+    <%- include('partials/navbar') %>
+
+    <div class="container mt-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><%= question.title %></h5>
+                <p class="card-text"><%= question.content %></p>
+                <hr>
+                <p class="card-text"><small><i class="fas fa-user"></i> <%= question.user.username %><br><i class="fas fa-calendar-alt"></i> <%= question.createdAt.toLocaleString() %><br><i class="fas fa-comment"></i> <%= question.comments.length %></small></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h5>Yorumlar</h5>
+        
+        <% if (question.comments && question.comments.length > 0) { %>
+            <ul class="list-group mb-4">
+                <% question.comments.forEach(function(comment) { %>
+                    <li class="list-group-item">
+                        <p><%= comment.content %></p>
+                        <hr>
+                        <p class="card-text"><small><i class="fas fa-user"></i> <%= comment.user.username %><br><i class="fas fa-calendar-alt"></i> <%= comment.createdAt.toLocaleString() %></small></p>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Henüz yorum yapılmamış.</p>
+        <% } %>        
+    
+        <% if (user) { %>
+            <form action="/question/<%= question._id %>/comments" method="POST">
+                <div class="mb-3">
+                    <textarea class="form-control" name="content" rows="3" placeholder="Yorumunuzu buraya yazın..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Yorum Gönder</button>
+            </form>
+        <% } else { %>
+            <div class="alert alert-warning" role="alert">
+                Yorum yapmak için <a href="/login">giriş yapmalısınız</a>.
+            </div>
+        <% } %>
+    </div>
+    
+
+</body>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</html>
